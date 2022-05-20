@@ -2,6 +2,7 @@ from pandas_datareader.stooq import StooqDailyReader
 import datetime as dt
 import pandas as pd
 import pickle as pk
+import numpy as np
 
 start = dt.date(2006, 11, 12)
 end = dt.date(2022, 5, 12)
@@ -23,3 +24,9 @@ brand = '^TPX'
 stooq = StooqDailyReader(brand, start, end)
 data = stooq.read()
 data.to_pickle('/content/drive/MyDrive/IMPP/Data/'+ brand + '.pkl')
+
+with open('/content/drive/MyDrive/IMPP/Data/^NKX.pkl', 'rb') as d:
+    df = pk.load(d)
+X = df["Open"]
+Y = df["High"]
+
